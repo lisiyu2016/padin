@@ -1,0 +1,43 @@
+<div *ngIf="HasNoPreferenceOnProjects(projects)" class="sidebar-no-widget-message">
+  You have not set any kind of widgets on your sidebar. You can add them here
+  by checking out each project single page and configure the customization
+</div>
+<app-statistics></app-statistics>
+<div class="row">
+  <ng-container *ngFor="let project of projects">
+    <ng-container *ngIf="project.preferences">
+      <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6" *ngIf="project.preferences.DisplayRealTimeTemperatureInSidebar && +project.type === 0">
+        <div class="box-wrapper">
+          <app-daily-statistics [id]="project.id"></app-daily-statistics>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6" *ngIf="+project.type === 4">
+        <div class="box-wrapper">
+          <app-kana-beta [id]="project.id"></app-kana-beta>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6" *ngIf="project.preferences.DisplayLampOnOffInHome && +project.type === 1">
+        <div class="box-wrapper">
+          <app-lamp-card [id]="project.id"></app-lamp-card>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6" *ngIf="project.preferences.DisplayHumidityInHome && +project.type === 2">
+        <div class="box-wrapper">
+          <app-humidity [id]="project.id"></app-humidity>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6" *ngIf="project.preferences.DisplayCO2InHome && +project.type === 3">
+        <div class="box-wrapper">
+          <app-co2-widget [id]="project.id"></app-co2-widget>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-6" *ngIf="project.preferences.DisplayHistoryStatisticsInHome">
+        <div class="box-wrapper no-padding">
+          <app-history-statistics [project]="project"></app-history-statistics>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+<app-places></app-places>

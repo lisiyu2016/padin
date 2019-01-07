@@ -1,0 +1,39 @@
+<app-page-container maintitle="OpenBMC Customization" subtitle="Modify according to feature list">
+
+  <div class="container">
+    <!-- <div class="col-md-12">
+	  <label class="label" translate>Uboot</label>
+	  <label class="label" translate>Kernel</label>
+	  <label class="label" translate>Busybox</label>
+	  <label class="label" translate>Application</label>
+      <!--<label class="checkbox" >
+        <input type="checkbox" class="app-project-customization-realtime" (change)="TriggerChange();" [(ngModel)]="form.DisplayRealTimeTemperatureInSidebar">
+        <i></i> <span translate>Display the real time value in home page</span>
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" class="app-project-customization-history" (change)="TriggerChange();" [(ngModel)]="form.DisplayHistoryStatisticsInHome">
+        <i></i> <span translate>Display the project history on home page</span>
+      </label>
+    </div> -->  
+	<ul class="nav nav-tabs" id="openBmcTab" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" id="bootloader-tab" data-toggle="tab" href="#bootloader" role="tab" aria-controls="bootloader" aria-selected="true">Bootloader</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="kernel-tab" data-toggle="tab" href="#kernel" role="tab" aria-controls="kernel" aria-selected="false">Kernel</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="filesystem-tab" data-toggle="tab" href="#filesystem" role="tab" aria-controls="filesystem" aria-selected="false">File System</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="application-tab" data-toggle="tab" href="#application" role="tab" aria-controls="application" aria-selected="false">Application</a>
+		</li>
+	</ul>
+	<div class="tab-content" id="openBmcTabContent">
+		<div class="tab-pane fade show active" id="bootloader" role="tabpanel" aria-labelledby="bootloader-tab">...</div>
+		<div class="tab-pane fade" id="kernel" role="tabpanel" aria-labelledby="kernel-tab">...</div>
+		<div class="tab-pane fade" id="filesystem" role="tabpanel" aria-labelledby="filesystem-tab">...</div>
+		<div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">...</div>
+	</div>
+  </div>
+</app-page-container>

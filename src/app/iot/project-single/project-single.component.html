@@ -1,0 +1,46 @@
+<app-progress-line *ngIf="isRequesting"></app-progress-line>
+<form>
+  <app-error-message *ngIf="response && response.error">
+    {{response.error.message}}
+  </app-error-message>
+
+  <app-project-general-information [response]="response" [mode]="form.id ? 'edit': 'new'" [project]="form" 
+    (onChange)="ProjectGeneralChange($event)" ></app-project-general-information>
+
+    <app-project-openbmc
+      *ngIf="IsOpenBMC()"
+      [preferences]="form.preferences" 
+      (onChange)="ProjectCustomizationChange($event)">
+    </app-project-openbmc>
+	
+    <app-project-temperature
+      *ngIf="IsTemperature()"
+      [preferences]="form.preferences" 
+      (onChange)="ProjectCustomizationChange($event)">
+    </app-project-temperature>
+	
+    <app-project-lamp
+      *ngIf="IsLamp()"
+      [preferences]="form.preferences" 
+      (onChange)="ProjectCustomizationChange($event)">
+    </app-project-lamp>
+    
+    <app-project-humidity
+      *ngIf="IsHumidity()"
+      [preferences]="form.preferences" 
+      (onChange)="ProjectCustomizationChange($event)">
+    </app-project-humidity>
+
+
+    <app-project-co2
+      *ngIf="IsCo2()"
+      [preferences]="form.preferences" 
+      (onChange)="ProjectCustomizationChange($event)">
+    </app-project-co2>
+
+  <button (click)="SubmitForm()" translate class="btn btn-primary app-project-single-edit" *ngIf="form.id">Edit project</button>
+  <button (click)="DeleteProject()" translate class="btn btn-danger" *ngIf="form.id">Delete project</button>
+  <button (click)="SubmitForm()" class="btn btn-primary app-project-single-create" *ngIf="!form.id" translate>Create project</button>
+  <a class="btn btn-warning app-project-single-cancel" routerLink="/projects" translate>cancel</a>
+
+</form>

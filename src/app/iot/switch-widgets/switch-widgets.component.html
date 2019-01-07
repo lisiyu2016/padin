@@ -1,0 +1,13 @@
+<div class="widget-box">
+  <div class="info-box">
+    <i class=" main-icon {{ GetIcon(project)}}"></i>
+    <div class="name">
+      <span>{{project.name}}</span>
+    </div>
+  </div>
+  <a class="view-button" [routerLink]="'/projects/' + project.id" >
+    <i class="icon-settings"></i>
+  </a>
+ 
+  <div class="value">{{value(project)}}</div>
+</div>

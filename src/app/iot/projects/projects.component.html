@@ -1,0 +1,59 @@
+<app-error-message *ngIf="projects.length === 0">
+    There are no projects. Please create projects and you will be able to manage them here.
+</app-error-message>
+
+<app-page-container maintitle="Projects" subtitle="All of your Projects in your environment">
+  <a class="btn btn-primary add-button" routerLink="../project/create" action-button translate>Connect a new project</a>
+  <div ngx-sidebar-off class="table-responsive iot-table">
+    <table class="table app-projects-table">
+      <thead>
+        <tr>
+          <th translate>Project Name</th>
+          <th translate>Data Source</th>
+          <th translate>Type</th>
+          <th translate>Location</th>
+          <th translate>Model</th>
+          <th class="action-column" translate>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let source of unconnected" class="unconnected-row" >
+          <td>N/A</td>
+          <td>{{source.dataSourceId}}</td>
+          <td>
+            N/A
+          </td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>
+            <a [routerLink]="'/create-project-from-source/' + source.dataSourceId">
+              <i [Tooltip]="'Create project'" class="icon-add"></i>
+            </a>
+          </td>
+        </tr>
+        <tr *ngFor="let project of projects" class="app-projects-row">
+          <td>{{project.name | translate}}</td>
+          <td>{{project.datasource}}</td>
+          <td>
+            <i *ngIf="+project.type === 0" [Tooltip]="'Tempreture'" class="icon-thermometer-lines"></i>
+            <i *ngIf="+project.type === 1" [Tooltip]="'Light'" class="icon-lightbulb_outline"></i>
+            <i *ngIf="+project.type === 4" [Tooltip]="'Kana beta'" class="icon-link"></i>
+          </td>
+          <td><a [routerLink]="'/locations/edit/' + project.location">
+            {{FindLocationName (project.location) | translate}}</a>
+          </td>
+          <td>{{ ! project.model ? 'N/A' : project.model}}</td>
+          <td>
+            <a [routerLink]="'/project/' + project.id "><i [Tooltip]="'Edit'" class="icon-mode_edit action-btn"></i></a>
+            <a (click)="DeleteProject(project)"><i [Tooltip]="'Delete'" class="icon-delete action-btn"></i></a>
+            <app-if-experimental>
+              <a [routerLink]="'/project/events-and-actions/' + project.id ">
+                <i [Tooltip]="'Manage'" class="icon-av_timer action-btn"></i>
+              </a>
+            </app-if-experimental>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-page-container>
